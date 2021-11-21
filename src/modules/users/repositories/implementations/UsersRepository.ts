@@ -39,8 +39,6 @@ class UsersRepository implements IUsersRepository {
 
     return user;
   }
-  /* 
-  
 
   findByEmail(email: string): User | undefined {
     // Complete aqui
@@ -51,8 +49,8 @@ class UsersRepository implements IUsersRepository {
   }
 
   list(): User[] {
-    // Complete aqui
-  } */
+    return this.users;
+  }
 }
 
 export { UsersRepository };
