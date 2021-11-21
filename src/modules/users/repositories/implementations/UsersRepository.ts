@@ -19,9 +19,17 @@ class UsersRepository implements IUsersRepository {
   }
 
   create({ name, email }: ICreateUserDTO): User {
-    // Complete aqui
-  }
+    this.users.push({
+      name,
+      email,
+      admin: false,
+      created_at: new Date(),
+      updated_at: new Date(),
+    });
 
+    return this.users[0];
+  }
+  /* 
   findById(id: string): User | undefined {
     // Complete aqui
   }
@@ -36,7 +44,7 @@ class UsersRepository implements IUsersRepository {
 
   list(): User[] {
     // Complete aqui
-  }
+  } */
 }
 
 export { UsersRepository };
