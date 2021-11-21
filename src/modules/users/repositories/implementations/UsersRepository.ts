@@ -19,7 +19,9 @@ class UsersRepository implements IUsersRepository {
   }
 
   create({ name, email }: ICreateUserDTO): User {
-    this.users.push({
+    const user = new User();
+
+    Object.assign(user, {
       name,
       email,
       admin: false,
@@ -27,7 +29,9 @@ class UsersRepository implements IUsersRepository {
       updated_at: new Date(),
     });
 
-    return this.users[0];
+    this.users.push(user);
+
+    return user;
   }
   /* 
   findById(id: string): User | undefined {
