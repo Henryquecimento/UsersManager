@@ -11,7 +11,9 @@ class ListAllUsersUseCase {
   execute({ user_id }: IRequest): User[] {
     const user = this.usersRepository.findById(user_id);
 
-    if (user.admin === false) throw new Error("Process is not allowed!");
+    if (!user || user.admin === false) {
+      throw new Error("Process is not allowed!");
+    }
 
     return this.usersRepository.list();
   }
