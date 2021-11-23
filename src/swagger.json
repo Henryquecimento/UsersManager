@@ -48,13 +48,38 @@
     "/users/{user_id}/admin": {
       "patch": {
         "summary": "Update User to Admin",
-        "Description": "Update User to Admin",
+        "description": "Update User to Admin",
         "responses": {
           "200": {
             "description": "Success"
           },
           "404": {
-            "description": "User does not exist!"
+            "description": "User not found!"
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "Existent user's id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/users/{user_id}": {
+      "get": {
+        "summary": "Show User's Profile",
+        "description": "Show User's profile",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "User not found!"
           }
         },
         "parameters": [
