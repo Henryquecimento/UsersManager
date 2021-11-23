@@ -2,6 +2,48 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Users Manager API",
-    "version": "1.0.0"
+    "description": "This API is responsible to create, list and update users",
+    "version": "1.0.0",
+    "contact": {
+      "email": "henryque.rdgs@gmail.com",
+      "url": "https://github.com/Henryquecimento"
+    }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "summary": "Create a new user",
+        "description": "Create a new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "email": "random@random.com",
+                  "name": "Random"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Email's already been registered!"
+          }
+        }
+      }
+    }
   }
 }
