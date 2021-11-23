@@ -44,6 +44,31 @@
           }
         }
       }
+    },
+    "/users/{user_id}/admin": {
+      "patch": {
+        "summary": "Update User to Admin",
+        "Description": "Update User to Admin",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "User does not exist!"
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "Existent user's id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
     }
   }
 }
