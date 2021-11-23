@@ -12,6 +12,9 @@
   "paths": {
     "/users": {
       "post": {
+        "tags": [
+          "Users"
+        ],
         "summary": "Create a new user",
         "description": "Create a new user",
         "requestBody": {
@@ -37,26 +40,95 @@
         },
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": "38dad77c-75ae-4e94-8920-5847df57e6fd",
+                  "admin": false,
+                  "name": "Random",
+                  "email": "random@random.com",
+                  "created_at": "2021-11-23T19:02:34.634Z",
+                  "updated_at": "2021-11-23T19:02:45.177Z"
+                }
+              }
+            }
           },
           "400": {
-            "description": "Email's already been registered!"
+            "description": "Email's already been registered",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Email's already been registered"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "List all users",
+        "description": "List all users (by admin)",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "description": "Existent and admin user's id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "id": "38dad77c-75ae-4e94-8920-5847df57e6fd",
+                    "admin": true,
+                    "name": "Random",
+                    "email": "random@random.com",
+                    "created_at": "2021-11-23T19:02:34.634Z",
+                    "updated_at": "2021-11-23T19:02:45.177Z"
+                  },
+                  {
+                    "id": "39dad88c-76ae-4a94-8921-5847df57e6jk",
+                    "admin": false,
+                    "name": "Random2",
+                    "email": "random2@random.com",
+                    "created_at": "2021-11-23T19:02:34.634Z",
+                    "updated_at": "2021-11-23T19:02:45.177Z"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Process is not allowed",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Process is not allowed"
+                }
+              }
+            }
           }
         }
       }
     },
     "/users/{user_id}/admin": {
       "patch": {
+        "tags": [
+          "Users"
+        ],
         "summary": "Update User to Admin",
         "description": "Update User to Admin",
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "404": {
-            "description": "User not found!"
-          }
-        },
         "parameters": [
           {
             "name": "user_id",
@@ -67,21 +139,43 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": "38dad77c-75ae-4e94-8920-5847df57e6fd",
+                  "admin": true,
+                  "name": "Random",
+                  "email": "random@random.com",
+                  "created_at": "2021-11-23T19:02:34.634Z",
+                  "updated_at": "2021-11-23T19:02:45.177Z"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "User not found"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/users/{user_id}": {
       "get": {
+        "tags": [
+          "Users"
+        ],
         "summary": "Show User's Profile",
         "description": "Show User's profile",
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "404": {
-            "description": "User not found!"
-          }
-        },
         "parameters": [
           {
             "name": "user_id",
@@ -92,7 +186,34 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": "38dad77c-75ae-4e94-8920-5847df57e6fd",
+                  "admin": false,
+                  "name": "Random",
+                  "email": "random@random.com",
+                  "created_at": "2021-11-23T19:02:34.634Z",
+                  "updated_at": "2021-11-23T19:02:45.177Z"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "User not found"
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
